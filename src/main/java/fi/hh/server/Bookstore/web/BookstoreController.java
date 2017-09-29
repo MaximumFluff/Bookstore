@@ -44,7 +44,16 @@ public class BookstoreController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long id, Model model) {
     	bookstorerepository.delete(id);
+    	// ../ means it goes one URL directory back, so it will always go to index
         return "redirect:../index";
+    }
+    
+    // TODO!!!
+    @RequestMapping(value="/edit/{id}", method = RequestMethod.GET)
+    public String editBook(@PathVariable("id") Long id, Book book, Model model)
+    {
+    	model.addAttribute("book", bookstorerepository.findOne(id));
+    	return "editbook";
     }
     
 }

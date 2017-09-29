@@ -7,8 +7,10 @@
 <body>
 	<h1>Add student</h1>
 	<div>
-		<form th:object="${book}" th:action="@{/save}" action="#" method="post">
+		<form th:object="${book}" th:action="@{../save}" action="#" method="post">
 	 	<p>Book Author First name: <input type="text" th:field="*{firstName}" /></p>
+	 	<!-- Hidden field, grabs ID to replace object in repository with updated fields -->
+	 	<p><input type="hidden" th:field="*{id}" /></p>
 	 	<p>Book Author Last name: <input type="text" th:field="*{lastName}" /></p>
 	 	<p>Book Title: <input type="text" th:field="*{title}" /></p>
 	 	<p>Book ISBN: <input type="text" th:field="*{isbn}" /></p>

@@ -22,9 +22,8 @@ public class BookstoreApplication {
 		return (args) -> {
 			//log.info("save a couple of students");
 			repository.save(new Book("Neuromancer", "William", "Gibson", 1984, "123456", 9.99));
-			//repository.save(new Book("Katy", "Kateson", "kate@kate.com"));	
-			
-
+			repository.save(new Book("Virtual Light", "William", "Gibson", 1991, "67890", 9.99));
+			repository.save(new Book("Something", "Bob", "Dole", 1980, "241567", 9.99));
 		};
 	}
 }
