@@ -10,6 +10,8 @@ import fi.hh.server.Bookstore.domain.Book;
 import fi.hh.server.Bookstore.domain.BookRepository;
 import fi.hh.server.Bookstore.domain.Category;
 import fi.hh.server.Bookstore.domain.CategoryRepository;
+import fi.hh.server.Bookstore.domain.User;
+import fi.hh.server.Bookstore.domain.UserRepository;
 @SpringBootApplication
 public class BookstoreApplication {
 	final Logger log = LoggerFactory.getLogger(BookstoreApplication.class);
@@ -19,9 +21,14 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner BOOKDemo(BookRepository repository, CategoryRepository categoryrepository) {
+	public CommandLineRunner BOOKDemo(BookRepository repository, CategoryRepository categoryrepository, UserRepository urepository) {
 		return (args) -> {
 			
+			// Create new users
+			User user1 = new User("user","$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			User user2 = new User("admin","$2a$06$eOmrAyZssl/tG20WWTRhOOpE2UfVq8fp7KMBZgel47qdtf/u.ipt.", "ADMIN");
+			urepository.save(user1);
+			urepository.save(user2);
 			// save to category repository
 			categoryrepository.save(new Category("Science-Fiction"));
 			categoryrepository.save(new Category("Horror"));

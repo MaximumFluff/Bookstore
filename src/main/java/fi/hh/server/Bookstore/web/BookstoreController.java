@@ -1,5 +1,7 @@
 package fi.hh.server.Bookstore.web;
 
+import java.util.List;
+
 //import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import fi.hh.server.Bookstore.domain.Book;
 import fi.hh.server.Bookstore.domain.BookRepository;
 import fi.hh.server.Bookstore.domain.CategoryRepository;
@@ -25,7 +26,7 @@ public class BookstoreController {
     @Autowired
     CategoryRepository categoryrepository;
     
-    @RequestMapping(value = "/index", method=RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method=RequestMethod.GET)
     public String addBook(Model model){
     	model.addAttribute("bookList", bookstorerepository.findAll());
         return "book";
@@ -63,6 +64,25 @@ public class BookstoreController {
     	model.addAttribute("categories", categoryrepository.findAll());
     	return "editbook";
     }
+    
+    @RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
+    
+    // RESTFUL services
+    // RESTful service to get all students
+    @RequestMapping(value="/book", method = RequestMethod.GET)
+    public @ResponseBody List<Book> bookListRest() {	
+        return (List<Book>) bookstorerepository.findAll();
+    }    
+
+	// RESTful service to get student by id
+    @RequestMapping(value="/book/{id}", method = RequestMethod.GET)
+    public @ResponseBody Book findBookRest(@PathVariable("id") Long id) {	
+    	return bookstorerepository.findOne(id);
+    }       
+    
     
 }
 
