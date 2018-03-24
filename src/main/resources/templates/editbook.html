@@ -1,16 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link type="text/css" rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
     <title>Booklist</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1>Add student</h1>
-	<div>
+	<div class="col-md-4 col-md-offset-4">
+        <h1>Add student</h1>
 		<form th:object="${book}" th:action="@{../save}" action="#" method="post">
-		 	<p>Book Author First name: <input type="text" th:field="*{firstName}" /></p>
-		 	<!-- Hidden field, grabs ID to replace object in repository with updated fields -->
-		 	<p><input type="hidden" th:field="*{id}" /></p>
+            <!-- Hidden field, grabs ID to replace object in repository with updated fields -->
+            <p><input type="hidden" th:field="*{id}" /></p>
+            <p>Book Author First name: <input type="text" th:field="*{firstName}" /></p>
 		 	<p>Book Author Last name: <input type="text" th:field="*{lastName}" /></p>
 		 	<p>Book Title: <input type="text" th:field="*{title}" /></p>
 		 	<p>Book ISBN: <input type="text" th:field="*{isbn}" /></p>
