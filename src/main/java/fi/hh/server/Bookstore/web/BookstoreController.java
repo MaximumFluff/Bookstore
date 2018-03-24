@@ -27,7 +27,7 @@ public class BookstoreController {
     CategoryRepository categoryrepository;
     
     @RequestMapping(value = {"/", "/index"}, method=RequestMethod.GET)
-    public String addBook(Model model){
+    public String book(Model model){
     	model.addAttribute("bookList", bookstorerepository.findAll());
         return "book";
     }
